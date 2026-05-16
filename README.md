@@ -2,6 +2,7 @@
 
 [![CI](https://github.com/neilgoodgame/zwift-workout-builder/actions/workflows/ci.yml/badge.svg)](https://github.com/neilgoodgame/zwift-workout-builder/actions/workflows/ci.yml)
 [![Lint](https://github.com/neilgoodgame/zwift-workout-builder/actions/workflows/lint.yml/badge.svg)](https://github.com/neilgoodgame/zwift-workout-builder/actions/workflows/lint.yml)
+[![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 
 **https://github.com/neilgoodgame/zwift-workout-builder**
 
