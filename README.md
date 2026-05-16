@@ -2,6 +2,8 @@
 
 [![CI](https://github.com/neilgoodgame/zwift-workout-builder/actions/workflows/ci.yml/badge.svg)](https://github.com/neilgoodgame/zwift-workout-builder/actions/workflows/ci.yml)
 
+**https://github.com/neilgoodgame/zwift-workout-builder**
+
 A command-line tool for creating structured Zwift workouts in the `.zwo` format, with optional export to Garmin FIT files for import into Garmin Connect.
 
 ## Installation
