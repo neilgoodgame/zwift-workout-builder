@@ -10,8 +10,8 @@ from zwift_workout.models import (
     IntervalsT,
     MaxEffort,
     Ramp,
-    SteadyState,
     SportType,
+    SteadyState,
     Warmup,
     Workout,
 )

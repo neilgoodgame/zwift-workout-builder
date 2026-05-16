@@ -21,8 +21,8 @@ from zwift_workout.models import (
     IntervalsT,
     MaxEffort,
     Ramp,
-    SteadyState,
     SportType,
+    SteadyState,
     Warmup,
     Workout,
 )
@@ -122,7 +122,9 @@ class TestSegmentToFitSteps:
         assert s.custom_target_power_high == 150  # 0.75 * 200
 
     def test_cooldown_produces_one_step(self):
-        steps = segment_to_fit_steps(Cooldown(duration=300, power_low=0.50, power_high=0.75), 2, 200)
+        steps = segment_to_fit_steps(
+            Cooldown(duration=300, power_low=0.50, power_high=0.75), 2, 200
+        )
         assert len(steps) == 1
         s = steps[0]
         assert s.step_index == 2
@@ -252,7 +254,9 @@ class TestWorkoutToFit:
     def test_step_count_with_intervals(self):
         w = Workout(name="Intervals")
         w.add_segment(Warmup(duration=300, power_low=0.25, power_high=0.75))
-        w.add_segment(IntervalsT(repeat=5, on_duration=60, off_duration=120, on_power=1.2, off_power=0.5))
+        w.add_segment(
+            IntervalsT(repeat=5, on_duration=60, off_duration=120, on_power=1.2, off_power=0.5)
+        )
         w.add_segment(Cooldown(duration=300, power_low=0.75, power_high=0.25))
         data = workout_to_fit(w)
         steps = _step_messages(data)
@@ -274,7 +278,9 @@ class TestWorkoutToFit:
 
     def test_interval_repeat_step_roundtrip(self):
         w = Workout(name="Repeat Test")
-        w.add_segment(IntervalsT(repeat=4, on_duration=60, off_duration=120, on_power=1.2, off_power=0.5))
+        w.add_segment(
+            IntervalsT(repeat=4, on_duration=60, off_duration=120, on_power=1.2, off_power=0.5)
+        )
         steps = _step_messages(workout_to_fit(w, ftp=200))
         assert len(steps) == 3
         on, off, repeat = steps
@@ -286,7 +292,9 @@ class TestWorkoutToFit:
         w = Workout(name="All Types")
         w.add_segment(Warmup(duration=300, power_low=0.25, power_high=0.75))
         w.add_segment(SteadyState(duration=600, power=0.88))
-        w.add_segment(IntervalsT(repeat=3, on_duration=60, off_duration=120, on_power=1.2, off_power=0.5))
+        w.add_segment(
+            IntervalsT(repeat=3, on_duration=60, off_duration=120, on_power=1.2, off_power=0.5)
+        )
         w.add_segment(FreeRide(duration=300))
         w.add_segment(Ramp(duration=300, power_low=0.5, power_high=1.0))
         w.add_segment(MaxEffort(duration=30))
@@ -304,6 +312,7 @@ class TestWorkoutToFit:
 class TestGarminCli:
     def test_garmin_flag_creates_fit_file(self, tmp_path):
         from click.testing import CliRunner
+
         from zwift_workout.cli import main
         runner = CliRunner()
         zwo = tmp_path / "workout.zwo"
@@ -321,6 +330,7 @@ class TestGarminCli:
 
     def test_garmin_with_ftp(self, tmp_path):
         from click.testing import CliRunner
+
         from zwift_workout.cli import main
         runner = CliRunner()
         zwo = tmp_path / "workout.zwo"
@@ -341,6 +351,7 @@ class TestGarminCli:
 
     def test_garmin_output_mentions_fit_file(self, tmp_path):
         from click.testing import CliRunner
+
         from zwift_workout.cli import main
         runner = CliRunner()
         result = runner.invoke(main, [
@@ -356,6 +367,7 @@ class TestGarminCli:
 
     def test_without_garmin_flag_no_fit_file(self, tmp_path):
         from click.testing import CliRunner
+
         from zwift_workout.cli import main
         runner = CliRunner()
         zwo = tmp_path / "workout.zwo"
@@ -370,6 +382,7 @@ class TestGarminCli:
 
     def test_garmin_flag_also_creates_zwo(self, tmp_path):
         from click.testing import CliRunner
+
         from zwift_workout.cli import main
         runner = CliRunner()
         zwo = tmp_path / "out.zwo"
@@ -386,6 +399,7 @@ class TestGarminCli:
 
     def test_ftp_must_be_positive(self, tmp_path):
         from click.testing import CliRunner
+
         from zwift_workout.cli import main
         runner = CliRunner()
         result = runner.invoke(main, [
@@ -400,6 +414,7 @@ class TestGarminCli:
 
     def test_garmin_intervals_roundtrip(self, tmp_path):
         from click.testing import CliRunner
+
         from zwift_workout.cli import main
         runner = CliRunner()
         fit = tmp_path / "intervals.fit"
@@ -410,7 +425,8 @@ class TestGarminCli:
             "--garmin",
             "--ftp", "200",
             "--segment", "warmup:duration=300,power_low=0.25,power_high=0.75",
-            "--segment", "intervals:repeat=5,on_duration=60,off_duration=120,on_power=1.2,off_power=0.5",
+            "--segment",
+            "intervals:repeat=5,on_duration=60,off_duration=120,on_power=1.2,off_power=0.5",
             "--segment", "cooldown:duration=300,power_low=0.75,power_high=0.25",
         ])
         steps = _step_messages(fit.read_bytes())

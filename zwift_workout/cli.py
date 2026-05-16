@@ -5,19 +5,19 @@ from pathlib import Path
 
 import click
 
+from zwift_workout.garmin_exporter import workout_to_fit
 from zwift_workout.models import (
     Cooldown,
     FreeRide,
     IntervalsT,
     MaxEffort,
     Ramp,
-    SteadyState,
     SportType,
+    SteadyState,
     Warmup,
     Workout,
     WorkoutSegment,
 )
-from zwift_workout.garmin_exporter import workout_to_fit
 from zwift_workout.xml_generator import workout_to_xml
 
 _SEGMENT_FORMATS = """\b

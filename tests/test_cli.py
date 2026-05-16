@@ -51,7 +51,9 @@ class TestParseSegment:
         assert isinstance(seg, SteadyState)
 
     def test_intervals(self):
-        seg = parse_segment("intervals:repeat=5,on_duration=60,off_duration=120,on_power=1.2,off_power=0.5")
+        seg = parse_segment(
+            "intervals:repeat=5,on_duration=60,off_duration=120,on_power=1.2,off_power=0.5"
+        )
         assert isinstance(seg, IntervalsT)
         assert seg.repeat == 5
         assert seg.on_duration == 60
@@ -69,7 +71,9 @@ class TestParseSegment:
         assert seg.cadence_resting == 80
 
     def test_intervalst_alias(self):
-        seg = parse_segment("intervalst:repeat=3,on_duration=30,off_duration=60,on_power=1.5,off_power=0.4")
+        seg = parse_segment(
+            "intervalst:repeat=3,on_duration=30,off_duration=60,on_power=1.5,off_power=0.4"
+        )
         assert isinstance(seg, IntervalsT)
 
     def test_freeride(self):

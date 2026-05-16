@@ -1,6 +1,6 @@
 """Convert Workout objects to Garmin FIT workout files (.fit)."""
 
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 from fit_tool.fit_file_builder import FitFileBuilder
 from fit_tool.profile.messages.file_id_message import FileIdMessage
@@ -21,16 +21,17 @@ from zwift_workout.models import (
     IntervalsT,
     MaxEffort,
     Ramp,
-    SteadyState,
     SportType,
+    SteadyState,
     Warmup,
     Workout,
     WorkoutSegment,
 )
 
+
 def _unix_now_ms() -> int:
     """Current time as Unix milliseconds, which is what fit-tool's time_created field expects."""
-    return int(datetime.now(timezone.utc).timestamp() * 1000)
+    return int(datetime.now(UTC).timestamp() * 1000)
 
 
 def _ms(seconds: int) -> int:
