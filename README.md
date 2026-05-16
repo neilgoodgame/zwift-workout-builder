@@ -1,6 +1,7 @@
 # Zwift Workout Builder
 
 [![CI](https://github.com/neilgoodgame/zwift-workout-builder/actions/workflows/ci.yml/badge.svg)](https://github.com/neilgoodgame/zwift-workout-builder/actions/workflows/ci.yml)
+[![Lint](https://github.com/neilgoodgame/zwift-workout-builder/actions/workflows/lint.yml/badge.svg)](https://github.com/neilgoodgame/zwift-workout-builder/actions/workflows/lint.yml)
 
 **https://github.com/neilgoodgame/zwift-workout-builder**
 
