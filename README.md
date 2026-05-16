@@ -31,6 +31,12 @@ pip install -e .
 zwift-workout --help
 ```
 
+For development (includes pytest, ruff, pre-commit):
+
+```bash
+pip install -r requirements-dev.txt
+```
+
 ## Commands
 
 ### `create` — build a workout file
