@@ -38,6 +38,18 @@ For development (includes pytest, ruff, pre-commit):
 pip install -r requirements-dev.txt
 ```
 
+## Development setup
+
+After cloning and installing dependencies, install the pre-commit hook so ruff runs automatically before every commit:
+
+```bash
+# With Poetry
+poetry run pre-commit install
+
+# With pip
+pre-commit install
+```
+
 ## Commands
 
 ### `create` — build a workout file
