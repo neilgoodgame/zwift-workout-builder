@@ -31,4 +31,11 @@ jobs:
         run: poetry install
 
       - name: Run tests
-        run: poetry run pytest --tb=short
+        run: poetry run pytest --tb=short --cov=zwift_workout --cov-report=xml
+
+      - name: Upload coverage to Codecov
+        if: matrix.python-version == '3.13'
+        uses: codecov/codecov-action@v5
+        with:
+          files: coverage.xml
+          fail_ci_if_error: true
