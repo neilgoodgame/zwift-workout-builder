@@ -8,18 +8,25 @@ A command-line tool for creating structured Zwift workouts in the `.zwo` format,
 
 ## Installation
 
-Requires Python 3.11+ and [Poetry](https://python-poetry.org/).
+Requires Python 3.11+.
+
+### With Poetry (recommended)
 
 ```bash
 git clone git@github.com:neilgoodgame/zwift-workout-builder.git
 cd zwift-workout-builder
 poetry install
+poetry run zwift-workout --help
 ```
 
-The `zwift-workout` command is then available inside the Poetry environment:
+### With pip
 
 ```bash
-poetry run zwift-workout --help
+git clone git@github.com:neilgoodgame/zwift-workout-builder.git
+cd zwift-workout-builder
+pip install -r requirements.txt
+pip install -e .
+zwift-workout --help
 ```
 
 ## Commands
